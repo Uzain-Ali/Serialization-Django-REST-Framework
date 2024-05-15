@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .row {
+            margin-top: 5px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <input type="text" class="input" id="row1-col1">
+        <input type="text" class="input" id="row1-col2">
+        <span class="error" id="error1"></span>
+    </div>
+    <div class="row mt-2">
+        <input type="text" class="input" id="row2-col1">
+        <input type="text" class="input" id="row2-col2">
+        <span class="error" id="error2"></span>
+    </div>
+    <div class="row mt-2">
+        <input type="text" class="input" id="row3-col1">
+        <input type="text" class="input" id="row3-col2">
+        <span class="error" id="error3"></span>
+    </div>
+    <div class="row mt-2">
+        <input type="text" class="input" id="row4-col1">
+        <input type="text" class="input" id="row4-col2">
+        <span class="error" id="error4"></span>
+    </div>
+
+    <script>
+        function validateRow(row, min, max) {
+            const input1 = document.getElementById(`row${row}-col1`);
+            const input2 = document.getElementById(`row${row}-col2`);
+            const error = document.getElementById(`error${row}`);
+            
+            input1.addEventListener('input', () => {
+                let value1 = parseInt(input1.value);
+                if (isNaN(value1) || value1 < min || value1 > max) {
+                    error.textContent = `Value must be between ${min} and ${max}`;
+                } else {
+                    error.textContent = '';
+                }
+            });
+            
+            input2.addEventListener('input', () => {
+                let value2 = parseInt(input2.value);
+                if (isNaN(value2) || value2 < min || value2 > max) {
+                    error.textContent = `Value must be between ${min} and ${max}`;
+                } else {
+                    error.textContent = '';
+                }
+            });
+        }
+        
+        validateRow(1, 0, 100);
+        validateRow(2, 101, 200);
+        validateRow(3, 201, 300);
+        validateRow(4, 301, 400);
+    </script>
+</body>
+</html>
